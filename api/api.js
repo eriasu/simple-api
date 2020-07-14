@@ -6,26 +6,38 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+const {
+    validateParams, validateNationalId, validateBody, validatePeople, validateHeaders, validateJsonHeader,
+} = require('../validations/validations');
+const { getOneController } = require('../repository/people/getOne/getOne.controller');
+const { getAllController } = require('../repository/people/getAll/getAllcontroller');
+const { createOneController } = require('../repository/people/createOne/createOne.controller');
+const { destroyOneController } = require('../repository/people/deleteOne/deleteOne.controller');
 
 app.get('/people', async (request, response) => {
     try {
-        response.status(200).send("[{'testing':'api'}]");
+        const data = await getAllController();
+        response.status(200).send(data);
     } catch (error) {
         response.status(500).send(error);
     }
 });
-app.get('/people/:nationalId', async (request, response) => {
+app.get('/people/:nationalId', validateParams(validateNationalId), async (request, response) => {
     try {
         const { nationalId } = request.params;
-        response.status(200).send(nationalId);
+        const data = await getOneController(nationalId);
+        response.status(200).send(data);
     } catch (error) {
         response.status(500).send(error);
     }
 });
-app.post('/people', async (request, response) => {
+app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePeople), async (request, response) => {
     try {
+        const { headers } = request;
+        console.log(headers['content-type']);
         const people = request.body;
-        response.status(201).send(people);
+        const data = await createOneController(people);
+        response.status(201).send(data);
     } catch (error) {
         response.status(500).send(error);
     }
@@ -34,15 +46,18 @@ app.post('/people', async (request, response) => {
 app.put('/people/:nationalId', async (request, response) => {
     try {
         const { nationalId } = request.params;
-        response.status(200).send(nationalId);
+        const people = request.body;
+        console.log(people);
+        response.status(200).send(`{"id":"${nationalId}","people":"${people}"}`);
     } catch (error) {
         response.status(500).send(error);
     }
 });
-app.delete('/people/:nationalId', async (request, response) => {
+app.delete('/people/:nationalId', validateParams(validateNationalId), async (request, response) => {
     try {
         const { nationalId } = request.params;
-        response.status(200).send(nationalId);
+        const data = await destroyOneController(nationalId);
+        response.status(200).send(data);
     } catch (error) {
         response.status(500).send(error);
     }
