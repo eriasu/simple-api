@@ -11,7 +11,7 @@
     - port: 3000
       targetPort: 3000
       protocol: TCP
-    type: LoadBalancer
+    type: ClusterIP
 ---
   apiVersion: apps/v1
   kind: Deployment
@@ -30,5 +30,5 @@
       spec:
         containers:
         - name: simple-api
-          image: gcr.io/pocs-254302/github.com/eriasu/simple-api
+          image: gcr.io/simple-api-project-283405/github.com/eriasu/simple-api
           imagePullPolicy: Always
