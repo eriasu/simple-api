@@ -42,6 +42,20 @@ steps:
     id: Save configs
     entrypoint: sh
   - name: gcr.io/cloud-builders/gke-deploy
+    id: Apply cluster issuer
+    args:
+      - apply
+      - '--filename=$_K8S_YAML_CLUSTER_ISSUER_PATH'
+      - '--cluster=$_GKE_CLUSTER'
+      - '--location=$_GKE_LOCATION'
+  - name: gcr.io/cloud-builders/gke-deploy
+    id: Apply nginx ingress
+    args:
+      - apply
+      - '--filename=$_K8S_YAML_NGINX_INGRESS_PATH'
+      - '--cluster=$_GKE_CLUSTER'
+      - '--location=$_GKE_LOCATION'
+  - name: gcr.io/cloud-builders/gke-deploy
     args:
       - apply
       - '--filename=output/expanded'
@@ -55,6 +69,8 @@ options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
   _K8S_LABELS: ''
+  _K8S_YAML_CLUSTER_ISSUER_PATH: cloud-files/clusterissuer.yaml
+  _K8S_YAML_NGINX_INGRESS_PATH: cloud-files/nginx-ingress.yaml
   _K8S_YAML_PATH: cloud-files/deployment.yaml
   _GKE_CLUSTER: simple-api-cluster
   _IMAGE_NAME: gcr.io/simple-api-project-283405/github.com/eriasu/simple-api
