@@ -1,0 +1,35 @@
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: simple-api-service-external
+  spec:
+    selector:
+      app: simple-api
+      tier: backend
+    ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+    type: LoadBalancer
+---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: simple-api
+  spec:
+    selector:
+      matchLabels:
+        app: simple-api
+        tier: backend
+        for: base
+    template:
+      metadata:
+        labels:
+          app: simple-api
+          tier: backend
+      spec:
+        containers:
+        - name: simple-api
+          image: gcr.io/pocs-254302/simple-api:9e8096e5c54afc7e16222b502ca7946d2cc26e20
+          imagePullPolicy: Always
