@@ -48,9 +48,9 @@ const validatePeople = (data) => {
 };
 const validateJsonHeader = (headers) => {
     const schema = yup.object().shape({
-        'content-type': yup.string().matches('application/json', 'es json'),
+        content: yup.string().matches('application/json', 'es json').required(),
     });
-    schema.validateSync(headers);
+    schema.validateSync({ content: headers['content-type'] });
 };
 
 module.exports = {
