@@ -22,7 +22,6 @@
       matchLabels:
         app: simple-api
         tier: backend
-        for: base
     template:
       metadata:
         labels:
