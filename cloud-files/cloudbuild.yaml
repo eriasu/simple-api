@@ -69,7 +69,7 @@ options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
   _K8S_LABELS: ''
-  _K8S_YAML_CLUSTER_ISSUER_PATH: cloud-files/clusterissuer.yaml
+  _K8S_YAML_CLUSTER_ISSUER_PATH: cloud-files/clusterIssuer.yaml
   _K8S_YAML_NGINX_INGRESS_PATH: cloud-files/nginx-ingress.yaml
   _K8S_YAML_PATH: cloud-files/deployment.yaml
   _GKE_CLUSTER: simple-api-cluster
