@@ -55,7 +55,7 @@ app.delete('/people/:nationalId', validateParams(validateNationalId), async (req
     try {
         const { nationalId } = request.params;
         const data = await destroyOneController(nationalId);
-        response.status(200).send(data);
+        response.status(data.status).send(data.data);
     } catch (error) {
         response.status(500).send(error);
     }
