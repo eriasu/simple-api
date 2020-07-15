@@ -33,11 +33,9 @@ app.get('/people/:nationalId', validateParams(validateNationalId), async (reques
 });
 app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePeople), async (request, response) => {
     try {
-        const { headers } = request;
-        console.log(headers['content-type']);
         const people = request.body;
         const data = await createOneController(people);
-        response.status(201).send(data);
+        response.status(data.status).send(data.data);
     } catch (error) {
         response.status(500).send(error);
     }
