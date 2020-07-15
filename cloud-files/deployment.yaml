@@ -30,5 +30,5 @@
       spec:
         containers:
         - name: simple-api
-          image: gcr.io/pocs-254302/simple-api:9e8096e5c54afc7e16222b502ca7946d2cc26e20
+          image: gcr.io/pocs-254302/github.com/eriasu/simple-api
           imagePullPolicy: Always
