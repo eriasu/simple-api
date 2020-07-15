@@ -1,9 +1,9 @@
 const { db } = require('../../../database/config');
 
 const { people } = db;
-const destroyOneData = async (id) => people.destroy({
+const destroyOneData = async (nationalId) => people.destroy({
     where: {
-        nationalId: id,
+        nationalId,
     },
 })
     .then((success) => success)

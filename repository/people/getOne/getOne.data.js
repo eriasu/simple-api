@@ -1,7 +1,7 @@
 const { db } = require('../../../database/config');
 
 const { people } = db;
-const getOneData = async (id) => people.findByPk(id)
+const getOneData = async (nationalId) => people.findByPk(nationalId)
     .then((success) => success)
     .catch((error) => {
         throw error;

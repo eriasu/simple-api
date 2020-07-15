@@ -1,6 +1,6 @@
 const { updateOneService } = require('./updateOne.service');
 
-const updateOneController = (person, nationalId) => updateOneService(person, nationalId)
+const updateOneController = (people, nationalId) => updateOneService(people, nationalId)
     .then((success) => {
         let jsonToReturn = {};
         if (success[0] === 1) {

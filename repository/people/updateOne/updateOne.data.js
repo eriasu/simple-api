@@ -1,7 +1,7 @@
 const { db } = require('../../../database/config');
 
 const { people } = db;
-const updateOneData = async (user, nationalId) => people.update(user, {
+const updateOneData = async (dataToUpdate, nationalId) => people.update(dataToUpdate, {
     where: {
         nationalId,
     },
