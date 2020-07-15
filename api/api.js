@@ -13,6 +13,7 @@ const { getOneController } = require('../repository/people/getOne/getOne.control
 const { getAllController } = require('../repository/people/getAll/getAllcontroller');
 const { createOneController } = require('../repository/people/createOne/createOne.controller');
 const { destroyOneController } = require('../repository/people/deleteOne/deleteOne.controller');
+const { updateOneController } = require('../repository/people/updateOne/updateOne.controller');
 
 app.get('/people', async (request, response) => {
     try {
@@ -41,12 +42,12 @@ app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePe
     }
 });
 
-app.put('/people/:nationalId', async (request, response) => {
+app.put('/people/:nationalId', validateHeaders(validateJsonHeader), validateBody(validatePeople), async (request, response) => {
     try {
         const { nationalId } = request.params;
         const people = request.body;
-        console.log(people);
-        response.status(200).send(`{"id":"${nationalId}","people":"${people}"}`);
+        const data = await updateOneController(people, nationalId);
+        response.status(data.status).send(data.data);
     } catch (error) {
         response.status(500).send(error);
     }
