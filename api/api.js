@@ -26,7 +26,7 @@ app.get('/people/:nationalId', validateParams(validateNationalId), async (reques
     try {
         const { nationalId } = request.params;
         const data = await getOneController(nationalId);
-        response.status(200).send(data);
+        response.status(data.status).send(data.data);
     } catch (error) {
         response.status(500).send(error);
     }
