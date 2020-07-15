@@ -1,6 +1,6 @@
 steps:
 # deploy container image to GKE
-- name: "gcr.io/pocs-254302/simple-api:9e8096e5c54afc7e16222b502ca7946d2cc26e20"
+- name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=./cloud-files/deployment.yaml
