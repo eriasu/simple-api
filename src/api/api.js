@@ -7,7 +7,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 const {
-    validateParams, validateNationalId, validateBody, validatePeople, validateHeaders, validateJsonHeader,
+    validateParams, validateNationalId, validateBody, validatePeopleForPost, validatePeopleForPut, validateHeaders, validateJsonHeader,
 } = require('../validations/validations');
 const { getOneController } = require('../repository/people/getOne/getOne.controller');
 const { getAllController } = require('../repository/people/getAll/getAllcontroller');
@@ -32,7 +32,7 @@ app.get('/people/:nationalId', validateParams(validateNationalId), async (reques
         response.status(500).send(error);
     }
 });
-app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePeople), async (request, response) => {
+app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePeopleForPost), async (request, response) => {
     try {
         const people = request.body;
         const data = await createOneController(people);
@@ -42,7 +42,7 @@ app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePe
     }
 });
 
-app.put('/people/:nationalId', validateHeaders(validateJsonHeader), validateBody(validatePeople), async (request, response) => {
+app.put('/people/:nationalId', validateHeaders(validateJsonHeader), validateBody(validatePeopleForPut), async (request, response) => {
     try {
         const { nationalId } = request.params;
         const people = request.body;
