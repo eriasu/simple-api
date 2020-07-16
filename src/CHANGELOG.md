@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/eriasu/simple-api/compare/v1.1.0...v1.1.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **validation:** fix missing validation on put for nationalId param ([2fdf0ab](https://github.com/eriasu/simple-api/commit/2fdf0ab88526f1233131e0132288ad904fb25641))
+* **validations:** add min and max age value ([93d4676](https://github.com/eriasu/simple-api/commit/93d467693c666a4e59aa7bc8b61630d28e044123))
+
 ## 1.1.0 (2020-07-16)
 
 
