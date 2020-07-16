@@ -6,7 +6,7 @@ const getOneController = (nationalId) => getOneService(nationalId)
         if (success) {
             jsonToReturn = { status: 200, data: success };
         } else {
-            jsonToReturn = { status: 404, data: '{}' };
+            jsonToReturn = { status: 404, data: "{'message':'person not found'}" };
         }
         return jsonToReturn;
     })
