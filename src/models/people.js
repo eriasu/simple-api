@@ -20,6 +20,10 @@ const People = (sequelize, dataTypes) => sequelize.define('people', {
         type: dataTypes.STRING,
         allowNull: true,
     },
+    originPlanet: {
+        type: dataTypes.STRING,
+        allowNull: true,
+    },
 },
 {
     timestamps: false,

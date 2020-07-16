@@ -42,6 +42,7 @@ const validatePeopleForPost = (data) => {
         name: yup.string(),
         lastName: yup.string(),
         age: yup.number().integer().min(0).max(150),
+        originPlanet: yup.string(),
         pictureUrl: yup.string().url(),
     });
     schema.validateSync(data);
@@ -53,6 +54,7 @@ const validatePeopleForPut = (data) => {
         name: yup.string(),
         lastName: yup.string(),
         age: yup.number().integer().min(0).max(150),
+        originPlanet: yup.string(),
         pictureUrl: yup.string().url(),
     });
     schema.validateSync(data);
