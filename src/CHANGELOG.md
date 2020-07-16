@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/eriasu/simple-api/compare/v1.1.1...v1.2.0) (2020-07-16)
+
+
+### Features
+
+* **models:** add new value to the people model and add validation for that new value ([f0f8168](https://github.com/eriasu/simple-api/commit/f0f8168400b8383b0043a6ae0d2b09d4d2178ea9))
+
 ### [1.1.1](https://github.com/eriasu/simple-api/compare/v1.1.0...v1.1.1) (2020-07-16)
 
 
