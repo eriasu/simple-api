@@ -41,7 +41,7 @@ const validatePeopleForPost = (data) => {
             .matches(/([0-9]+-[0-9k]+)/, 'is not a nationalId, it failed the validation'),
         name: yup.string(),
         lastName: yup.string(),
-        age: yup.number().integer().positive(),
+        age: yup.number().integer().min(0).max(150),
         pictureUrl: yup.string().url(),
     });
     schema.validateSync(data);
@@ -52,7 +52,7 @@ const validatePeopleForPut = (data) => {
             .matches(/([0-9]+-[0-9k]+)/, 'is not a nationalId, it failed the validation'),
         name: yup.string(),
         lastName: yup.string(),
-        age: yup.number().integer().positive(),
+        age: yup.number().integer().min(0).max(150),
         pictureUrl: yup.string().url(),
     });
     schema.validateSync(data);
