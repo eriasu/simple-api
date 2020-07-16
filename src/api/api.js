@@ -42,7 +42,7 @@ app.post('/people', validateHeaders(validateJsonHeader), validateBody(validatePe
     }
 });
 
-app.put('/people/:nationalId', validateHeaders(validateJsonHeader), validateBody(validatePeopleForPut), async (request, response) => {
+app.put('/people/:nationalId', validateParams(validateNationalId), validateHeaders(validateJsonHeader), validateBody(validatePeopleForPut), async (request, response) => {
     try {
         const { nationalId } = request.params;
         const people = request.body;
